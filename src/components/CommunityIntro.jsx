@@ -24,7 +24,7 @@ function CommunityIntro() {
           <h2 className="mb-8 text-4xl font-extrabold leading-tight text-[#060315] lg:text-5xl">
             Samyukt Gujarati Samaj
           </h2>
-          <div className="space-y-6 text-lg leading-relaxed text-[#555555]">
+          <div className="space-y-6 text-lg leading-relaxed text-[#555555] text-justify">
             <p>
               A united community celebrating our culture, values, and togetherness. We bring
               Gujaratis living away from home closer through social, cultural, and charitable
