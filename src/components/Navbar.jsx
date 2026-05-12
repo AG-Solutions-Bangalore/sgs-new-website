@@ -52,9 +52,8 @@ function Navbar() {
 
         <div
           id="navbar-menu"
-          className={`absolute left-0 top-full w-full border-t border-gray-100 bg-white lg:static lg:flex lg:w-auto lg:flex-1 lg:items-center lg:justify-end lg:border-t-0 ${
-            isOpen ? 'block' : 'hidden lg:flex'
-          }`}
+          className={`absolute left-0 top-full w-full border-t border-gray-100 bg-white lg:static lg:flex lg:w-auto lg:flex-1 lg:items-center lg:justify-end lg:border-t-0 ${isOpen ? 'block' : 'hidden lg:flex'
+            }`}
         >
           <div className="flex flex-col p-4 lg:ml-auto lg:flex-row lg:p-0">
             {navItems.map((item) => (
