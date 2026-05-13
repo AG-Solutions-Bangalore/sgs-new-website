@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/logo.png'
@@ -17,15 +18,17 @@ function Navbar() {
   const navLinkClass = ({ isActive }) =>
     [
       'flex h-12 items-center px-4 text-[15px] font-semibold uppercase transition-colors duration-200 lg:h-20',
-      isActive ? 'text-[#0d6efd]' : 'text-gray-900 hover:text-[#0d6efd]',
+      isActive
+        ? 'text-[#FF3E41]'
+        : 'text-black hover:text-[#FF3E41]',
     ].join(' ')
 
   return (
-    <nav className="sticky top-0 z-50 border-t-[5px] border-[#0d6efd] bg-white shadow-md">
+    <nav className="sticky top-0 z-50 border-t-[8px] border-yellow-400 bg-white shadow-md">
       <div className="mx-auto flex min-h-20 w-full max-w-[1320px] items-center justify-between">
         <NavLink
           to="/"
-          className="flex min-h-20 items-center px-4 lg:px-12"
+          className="flex min-h-20 items-center px-9 lg:px-15"
           onClick={() => setIsOpen(false)}
         >
           <img
@@ -37,7 +40,7 @@ function Navbar() {
 
         <button
           type="button"
-          className="mr-4 inline-flex h-11 w-11 items-center justify-center border border-gray-300 text-gray-700 lg:hidden"
+          className="mr-4 inline-flex h-11 w-11 items-center justify-center border border-black text-black lg:hidden"
           aria-controls="navbar-menu"
           aria-expanded={isOpen}
           aria-label="Toggle navigation"
@@ -52,8 +55,9 @@ function Navbar() {
 
         <div
           id="navbar-menu"
-          className={`absolute left-0 top-full w-full border-t border-gray-100 bg-white lg:static lg:flex lg:w-auto lg:flex-1 lg:items-center lg:justify-end lg:border-t-0 ${isOpen ? 'block' : 'hidden lg:flex'
-            }`}
+          className={`absolute left-0 top-full w-full border-t border-gray-100 bg-white lg:static lg:flex lg:w-auto lg:flex-1 lg:items-center lg:justify-end lg:border-t-0 ${
+            isOpen ? 'block' : 'hidden lg:flex'
+          }`}
         >
           <div className="flex flex-col p-4 lg:ml-auto lg:flex-row lg:p-0">
             {navItems.map((item) => (
@@ -69,9 +73,12 @@ function Navbar() {
             ))}
           </div>
 
-          <h4 className="hidden pr-10 text-xl font-semibold text-gray-900 lg:block">
-            <a href="tel:+916287678767" className="flex items-center gap-3 hover:text-[#0d6efd]">
-              <span className="text-2xl text-[#0d6efd]" aria-hidden="true">
+          <h4 className="hidden pr-10 text-xl font-semibold text-black lg:block">
+            <a
+              href="tel:+916287678767"
+              className="flex items-center gap-3 text-[#FF3E41] hover:text-[#d72d30]"
+            >
+              <span className="text-2xl text-yellow-300" aria-hidden="true">
                 &#9742;
               </span>
               +91 62876 78767

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Slide data – you can extend this array with more slides if needed
@@ -23,6 +23,46 @@ const slides = [
   },
 ];
 
+// CSS Animation Styles
+const animationStyles = `
+  @keyframes fadeInImage {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUpContent {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-image {
+    animation: fadeInImage 1.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up-content {
+    animation: slideUpContent 1.5s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+`;
+
+// Inject styles
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = animationStyles;
+  document.head.appendChild(style);
+}
+
 /**
  * WelcomeSection – a premium mobile‑first carousel.
  *
@@ -34,6 +74,10 @@ const slides = [
  */
 export default function WelcomeSection() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+  const contentRef = useRef(null);
   const slideCount = slides.length;
   const current = slides[activeSlide];
 
@@ -45,16 +89,50 @@ export default function WelcomeSection() {
     return () => clearInterval(timer);
   }, [slideCount]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.25 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const restartAnimation = (element, className) => {
+      if (!element) return;
+      element.classList.remove(className);
+      void element.offsetWidth;
+      element.classList.add(className);
+    };
+
+    if (isVisible) {
+      restartAnimation(imageRef.current, 'animate-fade-in-image');
+      restartAnimation(contentRef.current, 'animate-slide-up-content');
+    }
+  }, [activeSlide, isVisible]);
+
   // Manual navigation helpers
   const goToSlide = (index) => setActiveSlide(index);
   const nextSlide = () => setActiveSlide((prev) => (prev + 1) % slideCount);
   const prevSlide = () => setActiveSlide((prev) => (prev - 1 + slideCount) % slideCount);
 
   return (
-    <section className="relative h-[70vh] sm:h-[80vh] md:h-[90vh] overflow-hidden">
+    <section ref={sectionRef} className="relative h-[70vh] sm:h-[80vh] md:h-[90vh] overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-center bg-cover transition-opacity duration-700"
+        ref={imageRef}
+        className="absolute inset-0 bg-center bg-cover opacity-0"
         style={{ backgroundImage: `url(${current.image})` }}
         aria-label={current.alt}
       />
@@ -63,7 +141,10 @@ export default function WelcomeSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
 
       {/* Content overlay */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white">
+      <div
+        ref={contentRef}
+        className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white opacity-0"
+      >
         <p className="text-sm font-medium tracking-widest uppercase mb-2 opacity-90">
           {current.eyebrow}
         </p>
