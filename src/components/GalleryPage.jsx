@@ -1,5 +1,9 @@
+import Footer from "./Footer"
+
 function GalleryPage() {
   return (
+    <>
+    
     <main className="bg-white min-h-screen">
       <section className="bg-slate-950 text-white">
         <div className="mx-auto max-w-[1320px] px-6 py-24 text-center">
@@ -24,6 +28,9 @@ function GalleryPage() {
         </div>
       </section>
     </main>
+    <Footer/>
+    </>
+    
   )
 }
 

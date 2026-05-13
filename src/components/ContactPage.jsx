@@ -1,5 +1,9 @@
+import Footer from "./Footer"
+
 function ContactPage() {
   return (
+    <>
+    
     <main className="bg-white min-h-screen">
       <section className="mx-auto max-w-[1320px] px-6 py-24">
         <div className="grid gap-10 lg:grid-cols-2">
@@ -43,6 +47,8 @@ function ContactPage() {
         </div>
       </section>
     </main>
+    <Footer/>
+    </>
   )
 }
 
