@@ -1,12 +1,171 @@
 @import "tailwindcss";
+@import "antd/dist/reset.css";
 
 body {
-  margin: 0;
-  min-width: 320px;
-  background: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+/* .bg-yellow-500 {
+  background-color: #b33409;
+}
+.text-yellow-500 {
+  color: #2c20d6;
+} */
+/* .floating {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 8px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
+} */
+/* .floating-4 {
+  animation-name: floating;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating-4 {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 8px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
+} */
+/* .text-darken {
+  color: #2f327d;
+}
+.team-carousel .slick-slide > div {
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
+} */
+
+html {
+  scroll-behavior: smooth;
+}
+.purple-select {
+  border: 1px solid #fdba74 !important; /* orange-300 */
+  border-radius: 0.5rem !important; /* rounded-lg */
+  transition: all 0.2s ease;
 }
 
-#root {
-  min-height: 100svh;
+/* Hover (AntD applies blue by default) */
+.purple-select:hover {
+  border-color: #fb923c !important; /* orange-400 */
 }
+
+/* Focus = border-orange-500 + ring-orange-300 */
+.purple-select.ant-select-focused {
+  border-color: #f97316 !important; /* orange-500 */
+  box-shadow: 0 0 0 2px rgba(253, 186, 116, 0.5) !important; /* ring-orange-300 */
+}
+
+/* Dropdown selected item */
+.purple-select .ant-select-item-option-selected {
+  background-color: #fb6332 !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+/* Dropdown hover */
+.purple-select .ant-select-item-option-active {
+  background-color: #fb924c !important;
+  color: white !important;
+}
+/* For input */
+.custom-search .ant-input {
+  @apply px-4 py-3 bg-white text-black rounded-xl border-2 border-orange-500;
+}
+
+/* On focus */
+.custom-search .ant-input:focus {
+  @apply ring-2 ring-orange-300 border-orange-600;
+}
+
+/* For Search button */
+.custom-search .ant-btn {
+  @apply bg-orange-600 text-white font-semibold px-6 py-3 rounded-xl
+         hover:bg-orange-700 transition-all duration-300;
+}
+
+/* Clear icon color */
+.custom-search .ant-input-clear-icon {
+  @apply text-orange-600;
+}
+
+/* Premium Light Glassmorphism Card */
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(251, 99, 50, 0.12);
+}
+/* Saffron to Amber gradient text */
+.text-gradient-saffron {
+  background: linear-gradient(135deg, #fb6332 0%, #fb923c 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Saffron to Pink gradient text */
+.text-gradient-rose {
+  background: linear-gradient(135deg, #fb6332 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Floating animation */
+.animate-float-soft {
+  animation: floatSoft 6s ease-in-out infinite;
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Subtle Shimmer effect */
+.shimmer-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-glow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(251, 99, 50, 0.1) 50%,
+    transparent 55%
+  );
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+}
+
+.shimmer-glow:hover::after {
+  left: 100%;
+  top: 100%;
+}
+

@@ -1,48 +1,35 @@
-import { Route, Routes } from 'react-router-dom'
-import CommunityIntro from './components/CommunityIntro'
-import Navbar from './components/Navbar'
-import WelcomeSection from './components/WelcomeSection'
-import MissionSection from './components/MissionSection'
-import OurEventsSection from './components/OurEventsSection'
-import OurFeaturesSection from './components/OurFeaturesSection'
-import TeamSection from './components/TeamSection'
-import TestimonialsSection from './components/TestimonialsSection'
-import AboutPage from './components/AboutPage'
-import Footer from './components/Footer'
-import EventPage from './components/EventPage'
-import GalleryPage from './components/GalleryPage'
-import ContactPage from './components/ContactPage'
-import RegisterPage from './components/RegisterPage'
-
-function Home() {
-  return (
-    <>
-      <WelcomeSection />
-      <CommunityIntro />
-      <MissionSection/>
-      <OurEventsSection/>
-      <OurFeaturesSection/>
-      <TeamSection/>
-      <TestimonialsSection />
-      <Footer/>
-    </>
-  )
-}
+import { Toaster } from "react-hot-toast";
+import { Route, Routes } from "react-router-dom";
+import MainLayout from "./layout/MainLayout";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Gallery from "./pages/Gallery/Gallery";
+import Home from "./pages/Home";
+import Member from "./pages/Member/Member";
+import NotFound from "./pages/NotFound/NotFound";
+import Team from "./pages/Team/Team";
+import ThankYou from "./pages/ThankYou/ThankYou";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <Toaster position="top-right" />
+
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/event" element={<EventPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/member" element={<Member />} />
+          <Route path="/membership" element={<Member />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
